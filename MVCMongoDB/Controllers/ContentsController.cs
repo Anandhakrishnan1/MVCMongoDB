@@ -22,7 +22,7 @@ namespace MVCMongoDB.Controllers
             //Get the database connection  
             mongoDatabase = GetMongoDatabase();
             //fetch the details from CustomerDB and pass into view  
-            var result = mongoDatabase.GetCollection<Content>("Content").Find(a=>true).ToList();
+            var result = mongoDatabase.GetCollection<Content>("Contents").Find(a=>true).ToList();
             return View(result);
         }
         [HttpGet]
@@ -37,7 +37,7 @@ namespace MVCMongoDB.Controllers
             if (ModelState.IsValid)
             {
                 mongoDatabase = GetMongoDatabase();
-                var collection = mongoDatabase.GetCollection<Content>("Content");
+                var collection = mongoDatabase.GetCollection<Content>("Contents");
                 collection.InsertOneAsync(content);
                 return RedirectToAction("Index");
             }
@@ -50,7 +50,7 @@ namespace MVCMongoDB.Controllers
             //Get the database connection  
             mongoDatabase = GetMongoDatabase();
             //fetch the details from CustomerDB and pass into view  
-            Content content = mongoDatabase.GetCollection<Content>("Content").Find<Content>(k => k.Id == id).FirstOrDefault();
+            Content content = mongoDatabase.GetCollection<Content>("Contents").Find<Content>(k => k.Id == id).FirstOrDefault();
             if (content == null)
             {
                 return NotFound();
@@ -64,7 +64,7 @@ namespace MVCMongoDB.Controllers
             //Get the database connection  
             mongoDatabase = GetMongoDatabase();
             //fetch the details from CustomerDB and pass into view  
-            Content content = mongoDatabase.GetCollection<Content>("Content").Find<Content>(k => k.Id == id).FirstOrDefault();
+            Content content = mongoDatabase.GetCollection<Content>("Contents").Find<Content>(k => k.Id == id).FirstOrDefault();
             if (content == null)
             {
                 return NotFound();
@@ -79,7 +79,7 @@ namespace MVCMongoDB.Controllers
             if (ModelState.IsValid)
             {
                 mongoDatabase = GetMongoDatabase();
-                var collection = mongoDatabase.GetCollection<Content>("Content");
+                var collection = mongoDatabase.GetCollection<Content>("Contents");
                 var DeleteRecored = collection.DeleteOneAsync(
                                Builders<Content>.Filter.Eq("Id", id));
                 return RedirectToAction("Index");
@@ -93,7 +93,7 @@ namespace MVCMongoDB.Controllers
             //Get the database connection  
             mongoDatabase = GetMongoDatabase();
             //fetch the details from CustomerDB based on id and pass into view  
-            var content = mongoDatabase.GetCollection<Content>("Content").Find<Content>(k => k.Id == id).FirstOrDefault();
+            var content = mongoDatabase.GetCollection<Content>("Contents").Find<Content>(k => k.Id == id).FirstOrDefault();
             if (content == null)
             {
                 return NotFound();
@@ -107,7 +107,7 @@ namespace MVCMongoDB.Controllers
             if (ModelState.IsValid)
             {
                 mongoDatabase = GetMongoDatabase();
-                var collection = mongoDatabase.GetCollection<Content>("Content");
+                var collection = mongoDatabase.GetCollection<Content>("Contents");
 
                 var update = collection.FindOneAndUpdateAsync(Builders<Content>.Filter.Eq("Id", content.Id), 
                     Builders<Content>.Update.Set("PageName", content.PageName).Set("Content_EN", content.Content_EN).Set("Content_AR", content.Content_AR));
