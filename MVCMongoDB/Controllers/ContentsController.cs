@@ -41,7 +41,11 @@ namespace MVCMongoDB.Controllers
                 collection.InsertOneAsync(content);
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                return View();
+            }
+           
         }
 
         [HttpGet]
@@ -55,7 +59,10 @@ namespace MVCMongoDB.Controllers
             {
                 return NotFound();
             }
-            return View(content);
+            else
+            {
+                return View(content);
+            }
         }
 
         [HttpGet]
@@ -69,7 +76,10 @@ namespace MVCMongoDB.Controllers
             {
                 return NotFound();
             }
-            return View(content);
+            else
+            {
+                return View(content);
+            }
         }
 
         [HttpPost]
@@ -84,7 +94,10 @@ namespace MVCMongoDB.Controllers
                                Builders<Content>.Filter.Eq("Id", id));
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                return View();
+            }
         }
 
         [HttpGet]
@@ -98,7 +111,10 @@ namespace MVCMongoDB.Controllers
             {
                 return NotFound();
             }
-            return View(content);
+            else
+            {
+                return View(content);
+            }
         }
 
         [HttpPost]
@@ -114,7 +130,10 @@ namespace MVCMongoDB.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                return View();
+            }
         }
     }
 }
